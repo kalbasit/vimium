@@ -1,4 +1,8 @@
 /*
+ * vim:ft=javascript:fenc=UTF-8:ts=2:sts=2:sw=2:expandtab:
+ */
+
+/*
  * This content script takes input from its webpage and executes commands locally on behalf of the background
  * page. It must be run prior to domReady so that we perform some operations very early, like setting
  * the page's zoom level. We tell the background page that we're in domReady and ready to accept normal

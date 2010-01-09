@@ -1,4 +1,8 @@
 /*
+ * vim:ft=javascript:fenc=UTF-8:ts=2:sts=2:sw=2:expandtab:
+ */
+
+/*
  * This implements link hinting. Typing "F" will enter link-hinting mode, where all clickable items on
  * the page have a hint marker displayed containing a sequence of letters. Typing those letters will select
  * a link.
