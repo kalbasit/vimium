@@ -49,7 +49,7 @@ Navigating your history:
 
 Manipulating tabs:
     J, gt      next tab
-    K, gT      previous tab
+    K, gT, gb  previous tab
     t          create tab
     d          close current tab
     u          restore closed tab (i.e. unwind the 'd' command)
