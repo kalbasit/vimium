@@ -21,8 +21,38 @@ var linkHintsCss =
     'color:#C79F0B;' +
   '}';
 
+var settings = {};
+var settingsToLoad = ["hintCharacters"];
+
+function getSetting(key) {
+  if (!settingPort)
+    settingPort = chrome.extension.connect({ name: "getSetting" });
+  settingPort.postMessage({ key: key });
+}
+
+function setSetting(args) { settings[args.key] = args.value; }
+
+/*
+ * Complete initialization work that sould be done prior to DOMReady, like setting the page's zoom level.
+ */
+function initializePreDomReady() {
+  for (var i in settingsToLoad) { getSetting(settingsToLoad[i]); }
+
+  chrome.extension.onConnect.addListener(function(port, name) {
+    if (port.name == "returnSetting") {
+      port.onMessage.addListener(setSetting);
+    }
+  });
+}
+
+function initializeOnDomReady() {
+  hintCharacters = settings["hintCharacters"] || "sadfjklewcmp";
+  // Tell the background page we're in the dom ready state.
+  chrome.extension.connect({ name: "domReady" });
+};
+
 var hintMarkers = [];
-var hintCharacters = "sadfjklewcmp";
+var hintCharacters = settings["hintCharacters"] || "sadfjklewcmp";
 // The characters that were typed in while in "link hints" mode.
 var hintKeystrokeQueue = [];
 var linkHintsModeActivated = false;
@@ -296,4 +326,13 @@ function addCssToPage(css) {
   style.type = "text/css";
   style.appendChild(document.createTextNode(css));
   head.appendChild(style);
+}
+
+// Prevent our content script from being run on iframes -- only allow it to run on the top level DOM "window".
+// TODO(philc): We don't want to process multiple keyhandlers etc. when embedded on a page containing IFrames.
+// This should be revisited, because sometimes we *do* want to listen inside of the currently focused iframe.
+var isIframe = (window.self != window.parent);
+if (!isIframe) {
+  initializePreDomReady();
+  window.addEventListener("DOMContentLoaded", initializeOnDomReady);
 }
