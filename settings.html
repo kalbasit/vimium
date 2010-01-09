@@ -44,6 +44,7 @@
     localStorage["scrollStepSize"] = document.getElementById("scrollStepSize").value
     localStorage["defaultZoomLevel"] = document.getElementById("defaultZoomLevel").value
     localStorage["excludedUrls"] = document.getElementById("excludedUrls").value;
+	localStorage["hintCharacters"] = document.getElementById("hintCharacters").value;
 
     // Give the user some feedback that their options were saved.
     var status = document.getElementById("status");
@@ -57,10 +58,12 @@
     var scrollStepSize = localStorage["scrollStepSize"] || 60;
     var defaultZoomLevel = localStorage["defaultZoomLevel"] || 100;
     var defaultExcludedUrls = localStorage["excludedUrls"] || "";
+	var hintCharacters = localStorage["hintCharacters"] || "sadfjklewcmp"
 
     document.getElementById("scrollStepSize").value = scrollStepSize;
     document.getElementById("defaultZoomLevel").value = defaultZoomLevel;
     document.getElementById("excludedUrls").value = defaultExcludedUrls;
+	document.getElementById("hintCharacters").value = hintCharacters;
   }
   </script>
 
@@ -69,14 +72,19 @@
     <table>
       <tr>
         <td class="caption">Scroll Step Size</td>
-        <td><input id="scrollStepSize" type="text" style="width:50px">px</td>
+        <td><input id="scrollStepSize" type="text" style="width:50px" />px</td>
         <td><span class="example">(default: 60)</td>
       </tr>
       <tr>
         <td><span class="caption">Default zoom level</span></td>
-        <td><input id="defaultZoomLevel" type="text" value="100" style="width:50px">%</td>
+        <td><input id="defaultZoomLevel" type="text" value="100" style="width:100px" />%</td>
         <td><span class="example">(default: 100)</span></td>
       </tr>
+	  <tr>
+        <td><span class="caption">hint characters</span></td>
+        <td><input id="hintCharacters" type="text" style="width:50px" /></td>
+        <td><span class="example">(default: sadfjklewcmp)</span></td>
+	  </tr>
       <tr>
         <td colspan="3">
           <div style="position:relative">
