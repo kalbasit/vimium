@@ -25,6 +25,10 @@
         width:450px;
         min-height:100px;
       }
+      textarea#linkHintsCss {
+        width:450px;
+        min-height:300px;
+      }
       #status {
         margin-left:10px;
         font-size:80%;
@@ -45,6 +49,7 @@
     localStorage["defaultZoomLevel"] = document.getElementById("defaultZoomLevel").value
     localStorage["excludedUrls"] = document.getElementById("excludedUrls").value;
 	localStorage["hintCharacters"] = document.getElementById("hintCharacters").value;
+    localStorage["linkHintsCss"] = document.getElementById("linkHintsCss").value;
 
     // Give the user some feedback that their options were saved.
     var status = document.getElementById("status");
@@ -58,12 +63,31 @@
     var scrollStepSize = localStorage["scrollStepSize"] || 60;
     var defaultZoomLevel = localStorage["defaultZoomLevel"] || 100;
     var defaultExcludedUrls = localStorage["excludedUrls"] || "";
-	var hintCharacters = localStorage["hintCharacters"] || "sadfjklewcmp"
+    var hintCharacters = localStorage["hintCharacters"] || "sadfjklewcmp"
+    var defaultLinkHintsCss =
+      ".vimiumHintMarker {\n" +
+        "\tbackground-color:yellow;\n" +
+        "\tcolor:black;\n" +
+        "\tfont-weight:bold;\n" +
+        "\tfont-size:12px;\n" +
+        "\tpadding:0 1px;\n" +
+        "\tline-height:100%;\n" +
+        "\twidth:auto;\n" +
+        "\tdisplay:block;\n" +
+        "\tborder:1px solid #E3BE23;\n" +
+        "\tz-index:99999999;\n" +
+        "\tfont-family:'Helvetica Neue', 'Helvetica', 'Arial', 'Sans';\n" +
+      "}\n" +
+      ".vimiumHintMarker > span.matchingCharacter {\n" +
+        "\tcolor:#C79F0B;\n" +
+      "}\n";
+    var linkHintsCss = localStorage["linkHintsCss"] || defaultLinkHintsCss;
 
     document.getElementById("scrollStepSize").value = scrollStepSize;
     document.getElementById("defaultZoomLevel").value = defaultZoomLevel;
     document.getElementById("excludedUrls").value = defaultExcludedUrls;
 	document.getElementById("hintCharacters").value = hintCharacters;
+    document.getElementById("linkHintsCss").value = linkHintsCss;
   }
   </script>
 
@@ -97,6 +121,34 @@
               </div>
             </div>
             <textarea id="excludedUrls"></textarea>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div style="position:relative">
+            Hint CSS<br/>
+            <div style="position:absolute; right:-240px; width:240px">
+              <div class="example">
+                .vimiumHintMarker {<br/>
+                  &nbsp;&nbsp;background-color:yellow;<br/>
+                  &nbsp;&nbsp;color:black;<br/>
+                  &nbsp;&nbsp;font-weight:bold;<br/>
+                  &nbsp;&nbsp;font-size:12px;<br/>
+                  &nbsp;&nbsp;padding:0 1px;<br/>
+                  &nbsp;&nbsp;line-height:100%;<br/>
+                  &nbsp;&nbsp;width:auto;<br/>
+                  &nbsp;&nbsp;display:block;<br/>
+                  &nbsp;&nbsp;border:1px solid #E3BE23;<br/>
+                  &nbsp;&nbsp;z-index:99999999;<br/>
+                  &nbsp;&nbsp;font-family:"Helvetica Neue", "Helvetica", "Arial", "Sans";<br/>
+                }<br/>
+                .vimiumHintMarker > span.matchingCharacter {<br/>
+                  &nbsp;&nbsp;color:#C79F0B;<br/>
+                }<br/>
+              </div>
+            </div>
+            <textarea id="linkHintsCss"></textarea>
           </div>
         </td>
       </tr>

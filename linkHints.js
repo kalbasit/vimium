@@ -3,26 +3,9 @@
  * the page have a hint marker displayed containing a sequence of letters. Typing those letters will select
  * a link.
  */
-var linkHintsCss =
-  '.vimiumHintMarker {' +
-    'background-color:yellow;' +
-    'color:black;' +
-    'font-weight:bold;' +
-    'font-size:12px;' +
-    'padding:0 1px;' +
-    'line-height:100%;' +
-    'width:auto;' +
-    'display:block;' +
-    'border:1px solid #E3BE23;' +
-    'z-index:99999999;' +
-    'font-family:"Helvetica Neue", "Helvetica", "Arial", "Sans";' +
-  '}' +
-  '.vimiumHintMarker > span.matchingCharacter {' +
-    'color:#C79F0B;' +
-  '}';
 
 var settings = {};
-var settingsToLoad = ["hintCharacters"];
+var settingsToLoad = ["hintCharacters","linkHintsCss"];
 
 function getSetting(key) {
   if (!settingPort)
@@ -46,11 +29,35 @@ function initializePreDomReady() {
 }
 
 function initializeOnDomReady() {
-  hintCharacters = settings["hintCharacters"] || "sadfjklewcmp";
+  /** Populate the settings */
+  populateSettings();
   // Tell the background page we're in the dom ready state.
   chrome.extension.connect({ name: "domReady" });
-};
+}
 
+function populateSettings() {
+  linkHintsCss = settings["linkHintsCss"] || defaultLinkHintsCss;
+  hintCharacters = settings["hintCharacters"] || "sadfjklewcmp";
+}
+
+var defaultLinkHintsCss =
+  '.vimiumHintMarker {' +
+    'background-color:yellow;' +
+    'color:black;' +
+    'font-weight:bold;' +
+    'font-size:12px;' +
+    'padding:0 1px;' +
+    'line-height:100%;' +
+    'width:auto;' +
+    'display:block;' +
+    'border:1px solid #E3BE23;' +
+    'z-index:99999999;' +
+    'font-family:"Helvetica Neue", "Helvetica", "Arial", "Sans";' +
+  '}' +
+  '.vimiumHintMarker > span.matchingCharacter {' +
+    'color:#C79F0B;' +
+  '}';
+var linkHintsCss = '';
 var hintMarkers = [];
 var hintCharacters = settings["hintCharacters"] || "sadfjklewcmp";
 // The characters that were typed in while in "link hints" mode.
