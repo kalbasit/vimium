@@ -12,7 +12,8 @@
       "matches": ["http://*/*", "https://*/*"],
       "js": ["vimiumFrontend.js",
              "linkHints.js",
-             "lib/clipboard.js"
+             "lib/clipboard.js",
+             "lib/url.js"
             ],
       "run_at": "document_start"
     }

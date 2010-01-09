@@ -225,6 +225,20 @@ function copyCurrentUrl() {
   getCurrentUrlPort.postMessage({});
 }
 
+function incrementUrl() {
+  getCurrentUrlHandlers.push(function(url){ Url.open(Url.increment(url)); });
+
+  var getCurrentUrlPort = chrome.extension.connect({ name: "getCurrentTabUrl" });
+  getCurrentUrlPort.postMessage({});
+}
+
+function decrementUrl() {
+  getCurrentUrlHandlers.push(function(url){ Url.open(Url.decrement(url)); });
+
+  var getCurrentUrlPort = chrome.extension.connect({ name: "getCurrentTabUrl" });
+  getCurrentUrlPort.postMessage({});
+}
+
 function toggleViewSourceCallback(url) {
   if (url.substr(0, 12) == "view-source:")
   {

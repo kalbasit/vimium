@@ -262,6 +262,9 @@
   keyToCommandRegistry['d']  = removeTab;
   keyToCommandRegistry['u']  = restoreTab;
 
+  keyToCommandRegistry['<c-a>'] = 'incrementUrl';
+  keyToCommandRegistry['<c-x>'] = 'decrementUrl';
+
   function getActualKeyStrokeLength(key) {
     if (key.slice(0, 3) == "<c-" && key[key.length - 1] == ">")
       return 1;
