@@ -53,6 +53,8 @@ Manipulating tabs:
     t          create tab
     d          close current tab
     u          restore closed tab (i.e. unwind the 'd' command)
+    <c-a>      Increments the last number in URL by 1.
+    <c-x>      Decrements the last number in URL by 1.
 
 Vimium supports command repetition so, for example, hitting '5t' will open 5 tabs in rapid succession. ESC
 will clear any partial commands in the queue.
