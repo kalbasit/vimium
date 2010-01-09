@@ -7,6 +7,11 @@
         width:600px;
         margin:10px auto;
       }
+      .example-wrapper {
+        position:absolute;
+        right: -240px;
+        width: 240px;
+      }
       .example {
         font-size:80%;
         color:#555;
@@ -15,8 +20,17 @@
       .caption {
         margin-right:10px;
       }
+      .wrapper {
+        position: relative;
+      }
       td {
         padding:5px 0;
+      }
+      input#scrollStepSize, input#defaultZoomLevel {
+        width: 50px;
+      }
+      input#hintCharacters {
+        width: 100px;
       }
       button#saveSettings {
         margin-top:20px;
@@ -96,24 +110,24 @@
     <table>
       <tr>
         <td class="caption">Scroll Step Size</td>
-        <td><input id="scrollStepSize" type="text" style="width:50px" />px</td>
+        <td><input id="scrollStepSize" type="text" />px</td>
         <td><span class="example">(default: 60)</td>
       </tr>
       <tr>
         <td><span class="caption">Default zoom level</span></td>
-        <td><input id="defaultZoomLevel" type="text" value="100" style="width:50px" />%</td>
+        <td><input id="defaultZoomLevel" type="text" value="100" />%</td>
         <td><span class="example">(default: 100)</span></td>
       </tr>
 	  <tr>
-        <td><span class="caption">hint characters</span></td>
-        <td><input id="hintCharacters" type="text" style="width:100px" /></td>
+        <td><span class="caption">hint Characters</span></td>
+        <td><input id="hintCharacters" type="text" /></td>
         <td><span class="example">(default: sadfjklewcmp)</span></td>
 	  </tr>
       <tr>
         <td colspan="3">
-          <div style="position:relative">
+          <div class="wrapper">
             Excluded URLs<br/>
-            <div style="position:absolute; right:-240px; width:240px">
+            <div class="example-wrapper">
               <div class="example">
                 e.g. http*://mail.google.com/*<br/>
                 This will disable Vimium on Gmail.<br/><br/>
@@ -126,9 +140,9 @@
       </tr>
       <tr>
         <td colspan="3">
-          <div style="position:relative">
+          <div class="wrapper">
             Hint CSS<br/>
-            <div style="position:absolute; right:-240px; width:240px">
+            <div class="example-wrapper">
               <div class="example">
                 .vimiumHintMarker {<br/>
                   &nbsp;&nbsp;background-color:yellow;<br/>
