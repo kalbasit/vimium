@@ -31,6 +31,8 @@ Navigating the current page:
     G       scroll to bottom of the page
     <c-d>   scroll down a page
     <c-u>   scroll up a page
+    <c-f>   scroll down a full page
+    <c-b>   scroll up a full page
     f       activate link hints mode to open in current page
     F       activate link hints mode to open in new tab
     r       reload
@@ -48,8 +50,8 @@ Navigating your history:
     fw, fo, L     go forward in history
 
 Manipulating tabs:
-    J, gt      next tab
-    K, gT, gb  previous tab
+    J, gT      go one tab left
+    K, gt, gb  go one tab right
     t          create tab
     d          close current tab
     u          restore closed tab (i.e. unwind the 'd' command)
@@ -59,8 +61,19 @@ Manipulating tabs:
 Vimium supports command repetition so, for example, hitting '5t' will open 5 tabs in rapid succession. ESC
 will clear any partial commands in the queue.
 
+Contributing
+------------
+
+Send us a pull request on Github with some explanation. If the patch adds new behavior or functionality,
+please let us know whether it mirrors a similar extension for another browser or Vim itself. Feel free to
+include a change to the CREDITS file with your patch.
+
 Release Notes
 -------------
+
+1.13 (Unreleased, current)
+
+-  Commands <c-f> and <c-b> to scroll a full page up or down.
 
 1.11, 1.12 (01/08/2010)
 
